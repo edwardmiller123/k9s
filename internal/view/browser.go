@@ -557,11 +557,14 @@ func (b *Browser) resourceDelete(selections []string, msg string) {
 			}
 			if err := b.GetModel().Delete(b.defaultContext(), sel, propagation, grace); err != nil {
 				b.app.Flash().Errf("Delete failed with `%s", err)
-			} else {
-				b.app.factory.DeleteForwarder(sel)
 			}
 			b.GetTable().DeleteMark(sel)
 		}
+
+		if b.meta.Kind == "Pod" {
+			b.App().factory.DeleteForwarders(selections)
+		}
+		
 		b.refresh()
 	}, func() {})
 }

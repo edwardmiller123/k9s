@@ -98,3 +98,5 @@ func (t testFactory) Forwarders() watch.Forwarders {
 func (t testFactory) WaitForCacheSync() {}
 
 func (t testFactory) DeleteForwarder(string) {}
+
+func (t testFactory) DeleteForwarders([]string) {}

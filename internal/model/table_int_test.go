@@ -207,6 +207,7 @@ func (f testFactory) Forwarders() watch.Forwarders {
 	return nil
 }
 func (f testFactory) DeleteForwarder(string) {}
+func (f testFactory) DeleteForwarders([]string) {}
 
 // ----------------------------------------------------------------------------
 
