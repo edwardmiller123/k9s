@@ -92,6 +92,7 @@ func (f podFactory) CanForResource(ns, gvr string, verbs []string) (informers.Ge
 func (f podFactory) WaitForCacheSync()            {}
 func (f podFactory) Forwarders() watch.Forwarders { return nil }
 func (f podFactory) DeleteForwarder(string)       {}
+func (f podFactory) DeleteForwarders([]string)       {}
 
 func makePodFactory() dao.Factory {
 	return podFactory{}

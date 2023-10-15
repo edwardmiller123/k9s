@@ -142,6 +142,7 @@ func (f testFactory) Forwarders() watch.Forwarders {
 	return nil
 }
 func (f testFactory) DeleteForwarder(string) {}
+func (f testFactory) DeleteForwarders([]string) {}
 
 func makeCMEnvFromContainer(n string, optional bool) *v1.Container {
 	return &v1.Container{

@@ -116,6 +116,7 @@ func (f tableFactory) Forwarders() watch.Forwarders {
 	return nil
 }
 func (f tableFactory) DeleteForwarder(string) {}
+func (f tableFactory) DeleteForwarders([]string) {}
 
 func makeTableFactory() tableFactory {
 	return tableFactory{}

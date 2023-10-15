@@ -44,6 +44,9 @@ type Factory interface {
 	// DeleteForwarder deletes a pod forwarder.
 	DeleteForwarder(path string)
 
+	// DeleteForwarders deletes multiple pod forwarders.
+	DeleteForwarders(selections []string)
+
 	// Forwards returns all portforwards.
 	Forwarders() watch.Forwarders
 }

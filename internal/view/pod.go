@@ -203,11 +203,12 @@ func (p *Pod) killCmd(evt *tcell.EventKey) *tcell.EventKey {
 	for _, path := range selections {
 		if err := nuker.Delete(context.Background(), path, nil, dao.NowGrace); err != nil {
 			p.App().Flash().Errf("Delete failed with %s", err)
-		} else {
-			p.App().factory.DeleteForwarder(path)
 		}
 		p.GetTable().DeleteMark(path)
 	}
+
+		p.App().factory.DeleteForwarders(selections)
+	
 	p.Refresh()
 
 	return nil

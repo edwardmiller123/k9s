@@ -254,6 +254,25 @@ func (f *Factory) DeleteForwarder(path string) {
 	log.Warn().Msgf("Deleted (%d) portforward for %q", count, path)
 }
 
+// DeleteForwarders deletes mutiple portforwards for the given
+// containers.
+func (f *Factory) DeleteForwarders(selections []string) {
+	existingPortForwarders := f.Forwarders()
+		portForwardsToDelete := make([]string, 0)
+
+		for _, podPath := range selections {
+			for forwarderPath, _ := range existingPortForwarders {
+				if strings.HasPrefix(forwarderPath, podPath) {
+					portForwardsToDelete = append(portForwardsToDelete, forwarderPath)
+				}
+			}
+		}
+
+		for _, portForwardPath := range portForwardsToDelete {
+			f.DeleteForwarder(portForwardPath)
+		}
+}
+
 // Forwarders returns all portforwards.
 func (f *Factory) Forwarders() Forwarders {
 	f.mx.RLock()
